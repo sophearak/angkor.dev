@@ -12,14 +12,13 @@ import (
 func H(w http.ResponseWriter, r *http.Request) {
 	robot(w, r)
 
-	rf := r.Header.Get("Referer")
+	f := r.URL.Query().Get("khmer")
 
-	if strings.Contains(rf, "khmer.dev") {
+	if len(f) > 0 && f == "dev" {
 		template(w)
-		return
+	} else {
+		http.Redirect(w, r, "https://khmer.dev/?angkor=dev", 307)
 	}
-
-	http.Redirect(w, r, "https://khmer.dev", 307)
 }
 
 func robot(w http.ResponseWriter, r *http.Request) {
