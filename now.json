@@ -1,0 +1,24 @@
+{
+  "name": "angkor.dev",
+  "version": 2,
+  "builds": [
+    {
+      "src": "img/*",
+      "use": "@now/static"
+    },
+    {
+      "src": "index.go",
+      "use": "@now/go"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/angkor.dev.png",
+      "dest": "/img/angkor.dev.png"
+    },
+    {
+      "src": "/(.+)",
+      "dest": "/index.go"
+    }
+  ]
+}
